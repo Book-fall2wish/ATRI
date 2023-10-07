@@ -31,5 +31,4 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: false
-          tags: |
-            fall2wish/atri:latest
+          tags: fall2wish/atri:latest
