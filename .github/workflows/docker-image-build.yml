@@ -27,8 +27,15 @@ jobs:
           pip install toml
           echo "DOCKER_TAG=${{ secrets.DOCKER_SCRIPT }}" >> $GITHUB_STATE
           
-      - name: ✅ 构建并推送Dokcer镜像
+      - name: ✅ 构建并输出Dokcer镜像
         uses: docker/build-push-action@v5
         with:
           push: false
           tags: fall2wish/atri:latest
+          outputs: type=docker,dest=/tmp/myatri.tar
+          
+      - name: 🔃 上传Docker镜像
+        uses: actions/upload-artifact@v3
+        with:
+          name: myatri
+          path: /tmp/myatri.tar
