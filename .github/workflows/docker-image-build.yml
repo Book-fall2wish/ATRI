@@ -25,7 +25,7 @@ jobs:
         run: |
           echo ${{ secrets.DOCKER_SCRIPT }} | base64 -d > auto_docker_ver.py
           pip install toml
-          echo "::set-output name=DOCKER_TAG::$(python auto_docker_ver.py)"
+          echo "DOCKER_TAG=${{ secrets.DOCKER_SCRIPT }}" >> $GITHUB_STATE
           
       - name: ✅ 构建并推送Dokcer镜像
         uses: docker/build-push-action@v5
