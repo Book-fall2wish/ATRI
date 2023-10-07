@@ -32,10 +32,10 @@ jobs:
         with:
           push: false
           tags: fall2wish/atri:latest
-          outputs: type=docker,dest=/tmp/myatri.tar
+          outputs: type=docker,dest=/${{ github.workspace }}/myatri.tar
           
       - name: 🔃 上传Docker镜像
         uses: actions/upload-artifact@v3
         with:
           name: myatri
-          path: /tmp/myatri.tar
+          path: ${{ github.workspace }}
