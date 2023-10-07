@@ -27,15 +27,15 @@ jobs:
           pip install toml
           echo "DOCKER_TAG=${{ secrets.DOCKER_SCRIPT }}" >> $GITHUB_STATE
           
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          
       - name: ✅ 构建并输出Dokcer镜像
         uses: docker/build-push-action@v5
         with:
-          push: false
+          push: true
           tags: fall2wish/atri:latest
-          outputs: type=docker,dest=/${{ github.workspace }}/myatri.tar
-          
-      - name: 🔃 上传Docker镜像
-        uses: actions/upload-artifact@v3
-        with:
-          name: myatri
-          path: ${{ github.workspace }}
