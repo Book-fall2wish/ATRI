@@ -10,11 +10,11 @@ EXPOSE 20000
 
 RUN sed -i "s@http://deb.debian.org@http://mirrors.aliyun.com@g" /etc/apt/sources.list && rm -Rf /var/lib/apt/lists/* && apt-get update
 
-RUN  apt install curl git -y
+RUN  apt install curl -y
 
 RUN curl -sSL https://install.python-poetry.org | python3 -
 
-RUN /usr/local/bin/python -m pip install  --no-cache-dir --upgrade --quiet pip && git clone https://github.com/Kyomotoi/ATRI.git
+RUN /usr/local/bin/python -m pip install  --no-cache-dir --upgrade --quiet pip
 
 RUN poetry install
 
