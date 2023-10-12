@@ -10,7 +10,7 @@ EXPOSE 20000
 
 #RUN sed -i "s@http://deb.debian.org@http://mirrors.aliyun.com@g" /etc/apt/sources.list && rm -Rf /var/lib/apt/lists/* && apt-get update
 RUN apt update
-RUN apt install -y curl fonts-noto locales
+RUN apt install -y curl fonts-noto locales fontconfig
 
 # Generate the locale
 RUN sed -i -e 's/# zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/' /etc/locale.gen
