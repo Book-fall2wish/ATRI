@@ -10,10 +10,15 @@ EXPOSE 20000
 
 #RUN sed -i "s@http://deb.debian.org@http://mirrors.aliyun.com@g" /etc/apt/sources.list && rm -Rf /var/lib/apt/lists/* && apt-get update
 RUN apt update
-RUN apt install curl fonts-noto -y && \
-    locale-gen zh_CN zh_CN.UTF-8 && \
-    update-locale LC_ALL=zh_CN.UTF-8 LANG=zh_CN.UTF-8 && \
-    fc-cache -fv
+RUN apt install -y curl fonts-noto locales
+
+# Generate the locale
+RUN sed -i -e 's/# zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/' /etc/locale.gen
+RUN locale-gen
+RUN update-locale LC_ALL=zh_CN.UTF-8 LANG=zh_CN.UTF-8
+
+# Update font cache
+RUN fc-cache -fv
 
 RUN pip install playwright && \
     playwright install-deps
