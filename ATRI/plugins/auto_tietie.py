@@ -36,7 +36,7 @@ auto_tietie = plugin.on_message(
 )
 
 
-@auto_tietie.handle([Cooldown(600)])
+@auto_tietie.handle([Cooldown(86400)])
 async def _(event: MessageEvent):
     if not __TIETIE_ENABLED:
         await auto_tietie.finish()
