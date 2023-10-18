@@ -43,7 +43,7 @@ group_member_event = plugin.on_notice("群成员变动", "群成员变动检测"
 async def _(event: GroupIncreaseNoticeEvent):
     await asyncio.sleep(randint(1, 6))
     await group_member_event.finish(
-        MessageBuilder("好欸! 事新人!").text(f"在下 {choice(list(conf.BotConfig.nickname))}")
+        MessageBuilder("Bonjour ! C'est un nouveau visage,").text(f"je suis {choice(list(conf.BotConfig.nickname))}")
     )
 
 
@@ -53,8 +53,8 @@ async def _(event: GroupDecreaseNoticeEvent):
     await group_member_event.finish("呜——有人跑了...")
 
 
-group_admin_event = plugin.on_notice("群管理变动", "群管理变动检测")
-
+group_admin_event = plugin.on_notice("Quelqu'un a quitté le groupe de discussion.")
+    
 
 @group_admin_event.handle()
 async def _(event: GroupAdminNoticeEvent):
