@@ -12,6 +12,16 @@ EXPOSE 20000
 RUN apt update
 RUN apt install -y curl fonts-noto locales fontconfig
 
+RUN wget -O /tmp/YaHei.Consolas.1.12.zip https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/uigroupcode/YaHei.Consolas.1.12.zip && \
+    unzip /tmp/YaHei.Consolas.1.12.zip && \
+    mkdir -p /usr/share/fonts/consolas && \
+    mv YaHei.Consolas.1.12.ttf /usr/share/fonts/consolas/ && \
+    chmod 644 /usr/share/fonts/consolas/YaHei.Consolas.1.12.ttf && \
+    cd /usr/share/fonts/consolas && \
+    mkfontscale && \
+    sudo mkfontdir && \
+    sudo fc-cache -fv
+
 # Generate the locale
 RUN sed -i -e 's/# zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/' /etc/locale.gen
 RUN locale-gen
