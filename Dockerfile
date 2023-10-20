@@ -19,8 +19,8 @@ RUN wget -O /tmp/YaHei.Consolas.1.12.zip https://storage.googleapis.com/google-c
     chmod 644 /usr/share/fonts/consolas/YaHei.Consolas.1.12.ttf && \
     cd /usr/share/fonts/consolas && \
     mkfontscale && \
-    sudo mkfontdir && \
-    sudo fc-cache -fv
+    mkfontdir && \
+    fc-cache -fv
 
 # Generate the locale
 RUN sed -i -e 's/# zh_CN.UTF-8 UTF-8/zh_CN.UTF-8 UTF-8/' /etc/locale.gen
