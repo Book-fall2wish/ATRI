@@ -36,7 +36,8 @@ RUN curl -sSL https://install.python-poetry.org | python3 -
 
 RUN /usr/local/bin/python -m pip install  --no-cache-dir --upgrade --quiet pip
 
-RUN poetry install
+RUN poetry update && \
+    poetry install
 
 VOLUME /app/accounts /app/data
 
