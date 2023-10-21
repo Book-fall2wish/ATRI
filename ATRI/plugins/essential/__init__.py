@@ -47,10 +47,10 @@ async def _(event: GroupIncreaseNoticeEvent):
     )
 
 
-@group_member_event.handle()
-async def _(event: GroupDecreaseNoticeEvent):
-    await asyncio.sleep(randint(1, 6))
-    await group_member_event.finish("Quelqu'un a quitté le groupe de discussion...")
+#@group_member_event.handle()
+#async def _(event: GroupDecreaseNoticeEvent):
+#    await asyncio.sleep(randint(1, 6))
+#    await group_member_event.finish("Quelqu'un a quitté le groupe de discussion...")
 
 group_admin_event = plugin.on_notice("群管理变动", "群管理变动检测")    
 
